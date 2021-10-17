@@ -1,0 +1,21 @@
+{
+  "name": "react-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "create-react-class": "^15.6.3",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-json-table": "^0.1.1",
+    "react-scripts": "1.1.4",
+    "ts-react-json-table": "^0.1.1",
+    "yarn": "^1.7.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
