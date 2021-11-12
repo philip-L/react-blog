@@ -39,7 +39,7 @@ class App extends Component {
                     <h4 id="tag-line" class="text-muted">November 11, 2021</h4>
                     <br/>
                     <p align='left'>
-                      Traditional methods of stock analysis are becoming outdated, and machine learning models have been the rage for some time now. In this report, I discuss a method for a stock price indicator for my Udacity data science capstone project, using the python yfinance package to collect historical price for a list of stock symbols. Code is contained in a jupyter notebook found on my github here: <a href="https://github.com/philip-L/AlgoTrading/">here</a>.
+                      I like to think I'm a value investor and fundamentals are the most important, however there is more to it than that. While I want to hold and go long, I believe trends or swings in stock price are a better way to make profits in the short-term. Traditional methods using technical indicators and polynomial regression are becoming outdated, and machine learning (ML) models can be used to replace these. In this report, I discuss a ML method for a stock price indicator for my Udacity data science capstone project, using the python yfinance package to collect historical price for a list of stock symbols. Code is contained in a jupyter notebook found on my github <a href="https://github.com/philip-L/AlgoTrading/">here</a>.
                     </p>
                     <img src="/static/img/ML.jpg" align='center' width ='50%'/>
                     <br/>
@@ -65,13 +65,21 @@ class App extends Component {
                       To start, the data is scaled to values between 0 and 1 using sklearn's MinMaxScaler and is split into training and testing sets (80% and 20% respectively). In this problem the data needs to be split further into x and y sets, where x is an array of arrays for the closing price for m days in the past (60 data points is chosen) and y is an array of the closing price one day later.
                     </p>
                     <p align='left'>
-                      With this prepared data, I use built in keras (with tensorflow) methods to build, compile, and fit a LSTM model to train on the x and y datasets. With this trained model, I predict using the testing data and calculate RMSE as a metric of difference between predicted and actual values. For refinement, I wanted to try to lower RMSE. The model originally had four layers, two LSTM layers and two Dense layers. The RMSE was ~16, and removing one of the Dense layers in the model improved RMSE to ~11.
+                      With this prepared data, I use built in keras (with tensorflow) methods to build, compile, and fit a Sequential model with LSTM and Dense layers to train on the x and y datasets. With this trained model, I predict using the testing data and calculate RMSE as a metric of difference between predicted and actual values. For refinement, I wanted to try to lower RMSE. The model originally had four layers, two LSTM layers and two Dense layers. The RMSE was ~16, and removing one of the Dense layers in the model improved RMSE to ~11.
                     </p>
 
                     <br/>
                     <h4 align='left'>Results</h4>
                     <p align='left'>
-                      The following plot shows the historical closing price of ticker symbol "ANY" with training, testing and predicted values labeled in the legend. The model predicts values close but slightly higher than actual values. Overall it is a nice result.
+                      The Sequential() Keras model is used with the following layers:
+                      <ul>
+                        <li>LSTM(50, return_sequences = True, input_shape = (x_train.shape[1], 1)): output dimensionality of 50 units and returns the full sequence in the output sequence, also specify input shape</li>
+                        <li>LSTM(50, return_sequences = False): output dimensionality of 50 units, return the last output in the output sequence only</li>
+                        <li>Dense(1): regular densely-connected neural-network (NN) layer with output being the scaled predited value</li>
+                      </ul>
+                    </p>
+                    <p align='left'>
+                      The following plot shows the historical closing price of ticker symbol "ANY" with training, testing and predicted values labeled in the legend. The model predicts values close but slightly lower than actual values. RMSE is used to validate the model’s solution as described above and overall it is a nice result, therefore no other model, parameters, or techniques are shown or compared.
                     </p>
                     <img src="/static/img/model_chart.png" align='center'/>
                     <br/>
@@ -83,7 +91,7 @@ class App extends Component {
                     <br/>
                     <h4 align='left'>Conclusion</h4>
                     <p align='left'>
-                      In conclusion, the LSTM is just what I needed for this problem, however it could be explored more in depth to understand optimizer, loss function and the layers of the model. It was interesting how just three layers in the model could produce effective results. Some other possible areas to explore: 1. use finviz news and insider buying/selling to train a model to predict price changes. 2. to calculate percent gain for every previous year (X) and predict current year gain (y).
+                      In conclusion, the LSTM is just what I needed for this problem, however it could further be explored more in depth to understand the optimizer, loss function and the layers of the model. It was interesting how just three layers in the model could produce effective results. Some other possible areas to explore: 1. use finviz news and insider buying/selling to train a model to predict price changes. 2. to calculate percent gain for every previous year (X) and predict current year gain (y).
                     </p>
                     <br/><br/><br/>
                 </div>
