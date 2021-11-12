@@ -83,7 +83,7 @@ class App extends Component {
                     <br/>
                     <h4 align='left'>Conclusion</h4>
                     <p align='left'>
-                      In conclusion, the LSTM is just what I needed for this problem, however it could be explored more in depth to understand optimizer, loss function and the layers of the model. Some other possible areas to explore: 1. use finviz news and insider buying/selling to train a model to predict price changes. 2. to calculate percent gain for every previous year (X) and predict current year gain (y).
+                      In conclusion, the LSTM is just what I needed for this problem, however it could be explored more in depth to understand optimizer, loss function and the layers of the model. It was interesting how just three layers in the model could produce effective results. Some other possible areas to explore: 1. use finviz news and insider buying/selling to train a model to predict price changes. 2. to calculate percent gain for every previous year (X) and predict current year gain (y).
                     </p>
                     <br/><br/><br/>
                 </div>
