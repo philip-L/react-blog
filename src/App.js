@@ -7,7 +7,6 @@ const JsonTable = require('ts-react-json-table');
 
 // Global variable
 var blogState = "blog2"
-var blog;
 
 class App extends Component {
   state = {
@@ -47,11 +46,13 @@ class App extends Component {
                         </a>
                     </div>
                 </div>
-
                 <div className="col-11">
-                    <div id="middle-info" className="mt-3">
+                  <aside class="">
 
-                        <h2 id="tag-line">Finviz and Yahoo Finance API's for Retail Investors</h2>
+                  </aside>
+                    <div id="middle-info" className="mt-3" contenteditable="true">
+
+                        <h2 id="tag-line" contenteditable="true">Finviz and Yahoo Finance API's for Retail Investors</h2>
                         <h4 id="tag-line" className="text-muted">October 14, 2021</h4>
                         <br/>
                         <p align='left'>
@@ -159,7 +160,7 @@ class App extends Component {
                         <br/><br/><br/>
                     </div>
                     <div>
-                      <button type="button" value= "blog2" name= "blog2" onClick={this.toggleblog}>Blog 2</button>
+                      <button type="button" value= "blog2" name= "blog2" onClick={this.toggleblog}>View blog 2</button>
                     </div>
                     <br/><br/><br/>
                 </div>
@@ -191,16 +192,17 @@ class App extends Component {
                     <h4 id="tag-line" className="text-muted">November 11, 2021</h4>
                     <br/>
                     <p align='left'>
-                      I like to think I'm a value investor and fundamentals are the most important, however there is more to it than that. While I want to hold and go long, I believe trends or swings in stock price are a better way to make profits in the short-term. Traditional methods using technical indicators and polynomial regression are becoming outdated, and machine learning (ML) models can be used to replace these. In this report, I discuss a ML method for a stock price indicator for my Udacity data science capstone project, using the python yfinance package to collect historical price for a list of stock symbols. Code is contained in a jupyter notebook found on my github <a href="https://github.com/philip-L/AlgoTrading/">here</a>.
+                      I believe fundamentals are important, however there is more to it than that. I want to have a safe, conservative strategy to be able to set and forget, hold and go long. Contrarily, I believe trends or swings in stock price might be a better way to make profits in the short-term. Additionally, Initial Public Offering's (IPO's) can have wild swings, but it seems only insiders are able to profit since company data is not yet public.
+                      Traditional methods like certain technical indicators and polynomial regression are becoming outdated, and machine learning (ML) models can be used to replace these. In this report, I discuss a ML method for a stock price indicator using the past 60 days to predict the following day. This project uses the python yfinance package to collect historical price for a list of stock symbols. Code is contained in a jupyter notebook found on my github <a href="https://github.com/philip-L/AlgoTrading/">here</a>. I follow the same approach found in the blog by Jason Brownlee at his website<a href="https://machinelearningmastery.com/time-series-prediction-lstm-recurrent-neural-networks-python-keras/"> here</a> and watching youtube videos to help.
                     </p>
                     <img src="/static/img/ML.jpg" align='center' width ='50%'/>
                     <br/>
                     <br/>
                     <p align='left'>
-                      The problem here is to predict the closing price of a stock symbol n days into the future based on the data of m days of past data. In this project I wanted to explore the Long Short-Term Memory (LSTM) recurrent artificial neural network, which is powerful in time-series prediction problems. I discovered this method in the following tutorial on youtube: <a href="https://www.youtube.com/watch?v=QIUxPv5PJOY&ab_channel=ComputerScience">here</a>. Based on watching the video I expect the predictions of the model to be close, but not totally accurate, and should not be taken as real investing advice by itself.
+                      The problem here is to predict the closing price of a stock symbol n days into the future based on of m days of past data. In the case of IPO's, data is limited and simply the previous day's closing price can be used (the first day)IPO price   In this project I wanted to explore the Long Short-Term Memory (LSTM) recurrent artificial neural network, which is powerful in time-series prediction problems. I discovered this method in the following tutorial on youtube: <a href="https://www.youtube.com/watch?v=QIUxPv5PJOY&ab_channel=ComputerScience">here</a>. Based on watching the video I expect the predictions of the model to be close, but not totally accurate, and should not be taken as real investing advice by itself.
                     </p>
                     <p align='left'>
-                      The metric used to measure the model's performance here is the root-mean-squared error (RMSE). The rmse is a popular metric used to measure the difference between actual and predicted values. Since this can be thought of as a regression problem this is a good metric to use.
+                      The metric used to measure the model's performance here is the root-mean-squared error (RMSE). The RMSE is a popular metric used to measure the difference between actual and predicted values. It is a good metric to use for a regression problem like mean-squared error (MSE) or mean-absolute error (MAE).
                     </p>
 
                     <br/>
@@ -225,11 +227,13 @@ class App extends Component {
                     <p align='left'>
                       The Sequential() Keras model is used with the following layers:
                     </p>
-                    <ul>
+
+                    <ul align='left'>
                       <li>LSTM(50, return_sequences = True, input_shape = (x_train.shape[1], 1)): output dimensionality of 50 units and returns the full sequence in the output sequence, also specify input shape</li>
                       <li>LSTM(50, return_sequences = False): output dimensionality of 50 units, return the last output in the output sequence only</li>
                       <li>Dense(1): regular densely-connected neural-network (NN) layer with output being the scaled predited value</li>
                     </ul>
+                    
                     <p align='left'>
                       The following plot shows the historical closing price of ticker symbol "ANY" with training, testing and predicted values labeled in the legend. The model predicts values close but slightly lower than actual values. RMSE is used to validate the model’s solution as described above and overall it is a nice result, therefore no other model, parameters, or techniques are shown or compared.
                     </p>
@@ -237,13 +241,13 @@ class App extends Component {
                     <br/>
                     <br/>
                     <p align='left'>
-                      The model (LSTM) is a type of recurrent neural network designed to handle sequence dependencies and ideal for time-series prediction problems. It is trained using Backpropagation Through Time and overcomes the vanishing gradient problem. It is a good choice for regression problems.
+                      The model (LSTM) is a type of recurrent neural network designed to handle sequence dependencies and is ideal for time-series prediction problems. It is trained using Backpropagation Through Time and overcomes the <a href="https://en.wikipedia.org/wiki/Vanishing_gradient_problem">vanishing gradient problem</a>. It is a good choice for regression problems.
                     </p>
 
                     <br/>
                     <h4 align='left'>Conclusion</h4>
                     <p align='left'>
-                      In conclusion, the LSTM is just what I needed for this problem, however it could further be explored more in depth to understand the optimizer, loss function and the layers of the model. It was interesting how just three layers in the model could produce effective results. Some other possible areas to explore: 1. use finviz news and insider buying/selling to train a model to predict price changes. 2. to calculate percent gain for every previous year (X) and predict current year gain (y).
+                      In conclusion, the LSTM is just what I needed for this problem, however it could further be explored more in depth to understand the optimizer, loss function and the layers of the model. I could add the open/high/low and volume data to the model and try predicting into the future where there is no valid data to test against. It was interesting how just three layers in the model could produce effective results. Some other possible areas I want to explore: use finviz news and insider buying/selling as an indicator. Also I want to calculate percent gain for every previous year (X) and predict current year gain (y).
                     </p>
                     <br/><br/><br/>
                 </div>
@@ -251,13 +255,13 @@ class App extends Component {
         </div>
 
         <div>
-          <button type="button" value = "blog1" name= "blog1" onClick={this.toggleblog}>Blog 1</button>
+          <button type="button" value = "blog1" name= "blog1" onClick={this.toggleblog}>View previous blog</button>
         </div>
         <br/><br/><br/>
       </div>
     );
 
-      blog = (blogState == "blog2") ? blog2 : blog1
+      var blog = (blogState == "blog2") ? blog2 : blog1
 
       return blog
   }

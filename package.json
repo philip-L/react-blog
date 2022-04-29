@@ -10,7 +10,7 @@
     "react-json-table": "^0.1.1",
     "react-scripts": "1.1.4",
     "ts-react-json-table": "^0.1.1",
-    "yarn": "^1.7.0"
+    "yarn": "^1.22.17"
   },
   "scripts": {
     "start": "react-scripts start",
